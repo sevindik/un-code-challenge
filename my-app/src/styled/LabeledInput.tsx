@@ -14,9 +14,9 @@ const Label = styled.label`
   color: #a4a7b5;`
 ;
 
-export const LabeledInput = (inputProps: any) => (
+export const LabeledInput = (props: any) => (
   <React.Fragment>
-    <Label>Label</Label>
-    <input {...inputProps} />
+    <Label>{props.label}</Label>
+    <input {...props} />
   </React.Fragment>
 );

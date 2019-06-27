@@ -32,7 +32,7 @@ export const NameSnooble: React.FC<INameSnoobleProps> = ({ goToNextStep, goToExa
         Use a recognizable name like the device’s location to
         make it easy to identify when managing multiple devices.
       </div>
-      <LabeledInput onChange={onInputChange} />
+      <LabeledInput label={"Device Name"} onChange={onInputChange} />
 
       <div>Adopt Mini Snoobles</div>
       <div>Determines whether snoobles are auto-optimized
