@@ -2,9 +2,11 @@ import axios, { AxiosResponse } from "axios";
 import React, { Dispatch, useEffect } from "react";
 import { connect } from "react-redux";
 import { Action } from "redux";
+import snoobelImage from "../images/snooble-medium.jpg";
 import { IAppState } from "../store";
 import { goToNextStepAction, goToPreviousStepAction, setSnooblesAction } from "../store/SnoobleWizardStore";
 import { Button } from "../styled/Button";
+import { SnoobleLogo } from "../styled/SnoobleLogo";
 import { ISnooble } from "../types/Snooble";
 
 export const AdoptMiniSnoobles: React.FC<IAdoptMiniSnooblesProps> =
@@ -19,11 +21,19 @@ export const AdoptMiniSnoobles: React.FC<IAdoptMiniSnooblesProps> =
     }, [snooblesUrl, updateSnoobles]);
 
     return (
-      <React.Fragment>
-          <h3>Adopt Mini Snoobles</h3>
-          <span>{`We recognized ${snoobles.length} Mini Snoobles`}</span>
-
-          <table>
+      <div className="columns">
+        <div className="column is-1">
+          <SnoobleLogo />
+        </div>
+        <div className="column is-one-fifth">
+          <figure className="image">
+            <img src={snoobelImage} alt="snooble" />
+          </figure>
+        </div>
+        <div className="column">
+          <h3 className="title is-3">Adopt Mini Snoobles</h3>
+          <span style={{ marginBottom: "15px" }}>{`We recognized ${snoobles.length} Mini Snoobles`}</span>
+          <table className="table">
             <thead>
               <tr>
                 <th></th>
@@ -33,22 +43,31 @@ export const AdoptMiniSnoobles: React.FC<IAdoptMiniSnooblesProps> =
               </tr>
             </thead>
             <tbody>
-            {
-              snoobles.map((snooble: ISnooble, idx: number) => {
-                return (
-                <tr key={idx}>
-                  <td><input type="checkbox" defaultChecked/></td>
-                  <td>{snooble.model}</td>
-                  <td>{snooble.mac}</td>
-                  <td>{snooble.version}</td>
-                </tr>);
-              })
-            }
+              {
+                snoobles.map((snooble: ISnooble, idx: number) => {
+                  return (
+                    <tr key={idx}>
+                      <td><input type="checkbox" defaultChecked /></td>
+                      <td>{snooble.model}</td>
+                      <td>{snooble.mac}</td>
+                      <td>{snooble.version}</td>
+                    </tr>);
+                })
+              }
             </tbody>
           </table>
-          <Button onClick={goToPreviousStep}>Back</Button>
-          <Button onClick={goToNextStep}>Next</Button>
-      </React.Fragment>
+        </div>
+        <div className="column is-one-fifth" style={{ marginTop: "auto" }}>
+          <div className="columns">
+            <div className="column">
+              <Button onClick={goToPreviousStep}>Back</Button>
+            </div>
+            <div className="column">
+              <Button onClick={goToNextStep}>Next</Button>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   };
 

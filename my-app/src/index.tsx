@@ -1,3 +1,4 @@
+import "bulma";
 import React from "react";
 import "react-circular-progressbar/dist/styles.css";
 import ReactDOM from "react-dom";

@@ -1,12 +1,14 @@
 import React from 'react';
-import './App.css';
-import  SnoobleWizardContainer from './snoobleWizard/SnoobleWizardContainer';
+// import './App.css';
+import SnoobleWizardContainer from './snoobleWizard/SnoobleWizardContainer';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <SnoobleWizardContainer />
-    </div>
+    <section className="section">
+      <div className="container">
+        <SnoobleWizardContainer />
+      </div>
+    </section>
   );
 }
 

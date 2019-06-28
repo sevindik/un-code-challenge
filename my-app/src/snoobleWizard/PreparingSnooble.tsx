@@ -3,6 +3,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import { connect } from "react-redux";
 import { Action } from "redux";
 import { goToNextStepAction } from "../store/SnoobleWizardStore";
+import { SnoobleLogo } from "../styled/SnoobleLogo";
 
 export const PreparingSnooble: React.FC<IPreparingSnoobleProps> = ({ goToNextStep }) => {
   const [progress, setProgress] = useState(0);
@@ -19,11 +20,21 @@ export const PreparingSnooble: React.FC<IPreparingSnoobleProps> = ({ goToNextSte
   }, 1000);
 
   return (
-    <div>
-      {showSuccessMessage && <div>Snooble has been set-up successfully!</div>}
-      <span>
-        <CircularProgressbar value={progress} />
-      </span>
+    <div className="columns">
+      <div className="column is-1">
+        <SnoobleLogo />
+      </div>
+      <div className="column is-11">
+        <div className="row">
+          <figure className="image is-128x128">
+            <CircularProgressbar value={progress} />
+          </figure>
+        </div>
+        <div className="row">
+          {!showSuccessMessage && <span>Preparing Snooble</span>}
+          {showSuccessMessage && <span>Snooble has been set-up successfully!</span>}
+        </div>
+      </div>
     </div>
   );
 };

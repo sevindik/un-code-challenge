@@ -1,9 +1,11 @@
 import React, { Dispatch, useState } from "react";
 import { connect } from "react-redux";
 import { Action } from "redux";
+import snoobelImage from "../images/snooble-medium.jpg";
 import { goToExactStepAction, goToNextStepAction, setSnoobleDeviceNameAction } from "../store/SnoobleWizardStore";
 import { Button } from "../styled/Button";
 import { LabeledInput } from "../styled/LabeledInput";
+import { SnoobleLogo } from "../styled/SnoobleLogo";
 
 export const NameSnooble: React.FC<INameSnoobleProps> = ({ goToNextStep, goToExactStep, setSnoobleDeviceName }) => {
   const [miniSnoobleDiscoveryOn, setMiniSnoobleDiscovery] = useState(true);
@@ -26,20 +28,37 @@ export const NameSnooble: React.FC<INameSnoobleProps> = ({ goToNextStep, goToExa
   };
 
   return (
-    <div>
-      <h3>Name Your Snooble</h3>
-      <div>
-        Use a recognizable name like the device’s location to
-        make it easy to identify when managing multiple devices.
+    <div className="columns">
+      <div className="column is-1">
+        <SnoobleLogo />
       </div>
-      <LabeledInput label={"Device Name"} onChange={onInputChange} />
+      <div className="column is-one-fifth">
+        <figure className="image">
+          <img src={snoobelImage} alt="snooble" />
+        </figure>
+      </div>
+      <div className="column">
+        <h3 className="title is-3">Name Your Snooble</h3>
+        <h4 className="is-4" style={{ marginBottom: "15px" }}>
+          Use a recognizable name like the device’s location to
+          make it easy to identify when managing multiple devices.
+          </h4>
 
-      <div>Adopt Mini Snoobles</div>
-      <div>Determines whether snoobles are auto-optimized
-        <input type="checkbox" checked={miniSnoobleDiscoveryOn} onChange={onInputChange} />
+        <LabeledInput label={"Device Name"} onChange={onInputChange} />
+
+        <div className="columns">
+          <div className="column">
+            <p>Adopt Mini Snoobles</p>
+            <p>Determines whether snoobles are auto-optimized</p>
+          </div>
+          <div className="column">
+            <input type="checkbox" checked={miniSnoobleDiscoveryOn} onChange={onInputChange} />
+          </div>
+        </div>
       </div>
-      <div></div>
-      <Button onClick={onButtonClick}>Next</Button>
+      <div className="column is-one-fifth" style={{ marginTop: "auto" }}>
+        <Button onClick={onButtonClick}>Next</Button>
+      </div>
     </div>
   );
 };
